@@ -1,16 +1,15 @@
 <odoo>
-
-<record id="office_mail_template" model="mail.template">
-<field name="name">office Mail Template</field>
-<field name="model_id" ref="office_management.model_account_payment" ></field>
-<field name="subject">Office Management</field>
-<field name="partner_to">{{object.id}}</field>
-<field name="email_to">info@gmail.com</field>
-<field name="email_from">jatinkashyap2309@gmail.com</field>
-<field name="description">description</field>
-
-
-<field name="body_html" type="html">
+    <record id="office_mail_template" model="mail.template">
+        <field name="name">Office Mail Template</field>
+        <field name="model_id" ref="office_management.model_account_payment"/>
+        <field name="subject">Office Management</field>
+        <field name="partner_to">{{object.partner_id.email}}</field>
+        <field name="email_to">info@gmail.com</field>
+        <field name="email_from">jatinkashyap2309@gmail.com</field>
+        <field name="description">This is the template description</field>
+        <!-- <field name="report_template_id" ref="office_management.payment_report_pdf"/> -->
+        <!-- <field name="report_name">office_{{object.e_name}}_email</field> -->
+        <field name="body_html" type="html">
 
 <p>
 Demo mail
@@ -19,8 +18,6 @@ Demo mail
 <p t-field="object.amount" ></p>
 <p t-field="object.date" ></p>
 </field>
-</record>
-
-
+        <field name="report_template_ids" eval="[(4,ref('office_management.payment_report_pdf'))]"/>  
+    </record>
 </odoo>
-
